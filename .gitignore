@@ -6,4 +6,3 @@ ENV/
 dist/
 build/
 __pycache__/
-lib/
