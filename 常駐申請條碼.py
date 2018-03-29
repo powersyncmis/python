@@ -1,8 +1,11 @@
-import pymysql.cursors
 import math
 
+import pymysql.cursors
+
+
 def is_pair(x):
-    return not x%2
+    return not x % 2
+
 
 def ean13(number):
 
@@ -17,21 +20,22 @@ def ean13(number):
             oddsum += int(finalean[i])
         else:
             evensum += int(finalean[i])
-    total=(oddsum * 3) + evensum
+    total = (oddsum * 3) + evensum
 
-    check = int(10 - math.ceil(total % 10.0)) %10
+    check = int(10 - math.ceil(total % 10.0)) % 10
 
-    return check
+    return number + str(check)
+
 
 config = {
-    'host':'192.168.0.10',
-    'port':3306,
-    'user':'root',
-    'password':'power&mis',
-    'db':'mis',
-    'charset':'utf8mb4',
-    'cursorclass':pymysql.cursors.DictCursor,
-    }
+    'host': '192.168.0.10',
+    'port': 3306,
+    'user': 'root',
+    'password': 'power&mis',
+    'db': 'mis',
+    'charset': 'utf8mb4',
+    'cursorclass': pymysql.cursors.DictCursor,
+}
 
 connection1 = pymysql.connect(**config)
 
@@ -44,10 +48,10 @@ try:
             var1 = row1['MAX(GS1)']
             var1 = str(int(var1[0:12]) + 1)
             var2 = ean13(var1)
-            var3 = var1 + str(var2)
-            print(var3)
+
+            print(var2)
             row1 = cursor1.fetchone()
 except Exception as f:
-    print(f.args[0],f.args[1])
+    print(f.args[0], f.args[1])
 finally:
     connection1.close()
