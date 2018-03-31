@@ -79,8 +79,8 @@ while 1:
                 var4 = row3['Spec']
                 No2 = row3['No']
                 # print(var3,var4,No2)
-                var3 = HanziConv.toTraditional(var3)
-                var4 = HanziConv.toTraditional(var4)
+                # var3 = HanziConv.toTraditional(var3)
+                # var4 = HanziConv.toTraditional(var4)
                 # print(var3,var4,No2)
                 connection4 = pymysql.connect( ** config)
                 try:
