@@ -31,8 +31,10 @@ config = {
     'charset': 'utf8mb4',
     'cursorclass': pymysql.cursors.DictCursor,
     }
-print("檢查資料庫")
+
 while 1:
+    starttime = time.strftime("%H:%M:%S", time.localtime()) 
+    print("檢查資料庫 "+ starttime)
     while 1:
         connection1 = pymysql.connect( ** config)
         try:
@@ -51,7 +53,7 @@ while 1:
         finally:
             cursor1.close()
             connection1.close()
-            
+
         connection2 = pymysql.connect(**config)
         try:
             with connection2.cursor() as cursor2:
@@ -96,5 +98,6 @@ while 1:
     finally:
         cursor3.close()
         connection3.close()
-    print("處理完畢")
+    endtime = time.strftime("%H:%M:%S", time.localtime())
+    print("處理完畢！ " + endtime)
     time.sleep(60)
