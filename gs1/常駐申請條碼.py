@@ -60,44 +60,50 @@ while 1:
                 sql2 = "UPDATE gs1 SET GS1 = %s WHERE No = %s" 
                 x = cursor2.execute(sql2,(var2, No2))
                 if x == 0:
+                    print("無新資料")
+                    time.sleep(60)
                     break
-                connection2.commit()
+                else:
+                    endtime = time.strftime("%H:%M:%S", time.localtime())
+                    print("處理完畢！ " + endtime)
+                    time.sleep(60)
+                    connection2.commit()
         except:
             print("level_2")
         finally:
             cursor2.close()
             connection2.close()
 
-    connection3 = pymysql.connect( ** config)
-    try:
-        with connection3.cursor() as cursor3:
-            sql3 = "SELECT No,SName,Spec From gs1 WHERE End_Case = '0'"
-            cursor3.execute(sql3)
-            row3 = cursor3.fetchone()
-            while row3 is not None:
-                var3 = row3['SName']
-                var4 = row3['Spec']
-                No2 = row3['No']
-                # print(var3,var4,No2)
-                # var3 = HanziConv.toTraditional(var3)
-                # var4 = HanziConv.toTraditional(var4)
-                # print(var3,var4,No2)
-                connection4 = pymysql.connect( ** config)
-                try:
-                    with connection4.cursor() as cursor4:
-                        sql4 = "UPDATE gs1 SET SName =%s, Spec=%s WHERE No=%s"
-                        cursor4.execute(sql4,(var3,var4,No2))
-                        connection4.commit()
-                except:
-                    print("level_3")
-                row3 = cursor3.fetchone()
-            cursor4.close()
-            connection4.close()
-    except:
-        print("level_4")
-    finally:
-        cursor3.close()
-        connection3.close()
+    # connection3 = pymysql.connect( ** config)
+    # try:
+    #     with connection3.cursor() as cursor3:
+    #         sql3 = "SELECT No,SName,Spec From gs1 WHERE End_Case = '0'"
+    #         cursor3.execute(sql3)
+    #         row3 = cursor3.fetchone()
+    #         while row3 is not None:
+    #             var3 = row3['SName']
+    #             var4 = row3['Spec']
+    #             No2 = row3['No']
+    #             # print(var3,var4,No2)
+    #             # var3 = HanziConv.toTraditional(var3)
+    #             # var4 = HanziConv.toTraditional(var4)
+    #             # print(var3,var4,No2)
+    #             connection4 = pymysql.connect( ** config)
+    #             try:
+    #                 with connection4.cursor() as cursor4:
+    #                     sql4 = "UPDATE gs1 SET SName =%s, Spec=%s WHERE No=%s"
+    #                     cursor4.execute(sql4,(var3,var4,No2))
+    #                     connection4.commit()
+    #             except:
+    #                 print("level_3")
+    #             row3 = cursor3.fetchone()
+    #         cursor4.close()
+    #         connection4.close()
+    # except:
+    #     print("level_4")
+    # finally:
+    #     cursor3.close()
+    #     connection3.close()
     endtime = time.strftime("%H:%M:%S", time.localtime())
     print("處理完畢！ " + endtime)
     time.sleep(60)
