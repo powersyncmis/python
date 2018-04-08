@@ -6,7 +6,7 @@ ENV/
 dist/
 build/
 __pycache__/
-.vscode/
+.vscode
 Thumbs.db
 */settings.json
 .vscode/settings.json
