@@ -8,4 +8,5 @@ build/
 __pycache__/
 .vscode/
 Thumbs.db
-*/ssettings.json
+*/settings.json
+.vscode/settings.json
