@@ -47,7 +47,6 @@ while 1:
                 var2 = ean13(var1)
                 No1 = row1['No']
                 No2 = str(int(No1)+1)
-                # print(No2,var2)
         except:
             print("level_1")
         finally:
@@ -65,7 +64,7 @@ while 1:
                     break
                 else:
                     endtime = time.strftime("%H:%M:%S", time.localtime())
-                    print("處理完畢！ " + endtime)
+                    print("處理完畢！" + endtime)
                     time.sleep(60)
                     connection2.commit()
         except:
