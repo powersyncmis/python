@@ -75,7 +75,7 @@ while 1:
                     break
                 else:
                     endtime = time.strftime("%H:%M:%S", time.localtime())
-                    print("處理完畢！" + endtime)
+                    print("上海處理完畢！" + endtime)
                     time.sleep(60)
                     connection2.commit()
         except Exception as c:
@@ -83,7 +83,8 @@ while 1:
         finally:
             cursor2.close()
             connection2.close()
-
+            
+    while 1:
         connection3 = pymysql.connect( ** config)
         try:
             with connection3.cursor() as cursor3:
@@ -123,7 +124,7 @@ while 1:
                     break
                 else:
                     endtime = time.strftime("%H:%M:%S", time.localtime())
-                    print("處理完畢！" + endtime)
+                    print("台北處理完畢！" + endtime)
                     time.sleep(60)
                     connection4.commit()
         except Exception as f:
@@ -160,7 +161,7 @@ while 1:
     #     print("level_4")
     # finally:
     #     cursor3.close()
-    #     connection3.close()
-    endtime = time.strftime("%H:%M:%S", time.localtime())
-    print("處理完畢！ " + endtime)
-    time.sleep(60)
+    #     connection3.close()   
+endtime = time.strftime("%H:%M:%S", time.localtime())
+print("全部處理完畢！ " + endtime)
+time.sleep(60)
