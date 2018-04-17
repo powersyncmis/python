@@ -56,7 +56,7 @@ while 1:
         connection2 = pymysql.connect(**config)
         try:
             with connection2.cursor() as cursor2:
-                sql2 = "UPDATE gs1 SET GS1 = %s WHERE No = (SELECT MIN(No) From gs1 where Company='SH')" 
+                sql2 = "UPDATE gs1 SET GS1 = %s WHERE No = (SELECT MIN(No) From gs1 where Company='SH' AND gs1 is Null)" 
                 x = cursor2.execute(sql2,var2)
                 if x == 0:
                     print("上海無新資料")
@@ -93,7 +93,7 @@ while 1:
         connection4 = pymysql.connect(**config)
         try:
             with connection4.cursor() as cursor4:
-                sql4 = "UPDATE gs1 SET GS1 = %s WHERE No = (SELECT MIN(No) From gs1 where Company='TP')" 
+                sql4 = "UPDATE gs1 SET GS1 = %s WHERE No = (SELECT MIN(No) From gs1 where Company='TP' AND gs1 is Null)" 
                 x = cursor4.execute(sql4,var2)
                 if x == 0:
                     print("台北無新資料")
