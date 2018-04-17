@@ -47,8 +47,8 @@ while 1:
                 var2 = ean13(var1)
                 No1 = row1['No']
                 No2 = str(int(No1)+1)
-        except:
-            print("level_1")
+        except Exception as a:
+            print("step1:" + a)
         finally:
             cursor1.close()
             connection1.close()
@@ -67,8 +67,8 @@ while 1:
                     print("處理完畢！" + endtime)
                     time.sleep(60)
                     connection2.commit()
-        except:
-            print("level_2")
+        except Exception as b:
+            print("step2:" + b)
         finally:
             cursor2.close()
             connection2.close()
@@ -84,8 +84,8 @@ while 1:
                 var2 = ean13(var1)
                 No1 = row1['No']
                 No2 = str(int(No1)+1)
-        except:
-            print("level_3")
+        except Exception as c:
+            print("step3:" + c)
         finally:
             cursor3.close()
             connection3.close()
@@ -104,8 +104,8 @@ while 1:
                     print("處理完畢！" + endtime)
                     time.sleep(60)
                     connection4.commit()
-        except:
-            print("level_4")
+        except Exception as d:
+            print("step4:" + d)
         finally:
             cursor4.close()
             connection4.close()
