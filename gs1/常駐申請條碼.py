@@ -83,7 +83,7 @@ while 1:
         finally:
             cursor2.close()
             connection2.close()
-            
+
     while 1:
         connection3 = pymysql.connect( ** config)
         try:
@@ -103,10 +103,10 @@ while 1:
         connection6 = pymysql.connect( ** config)
         try:
             with connection6.cursor() as cursor6:
-                sql6 = "SELECT MIN(No) From gs1 where Company='TP' AND GS1 is Null"
+                sql6 = "SELECT MIN(No) as NN From gs1 where Company='TP' AND GS1 is Null"
                 cursor6.execute(sql6)
                 row1 = cursor6.fetchone()
-                No2 = row1['MIN(No)']
+                No2 = row1['NN']
         except Exception as e:
             print(e)
         finally:
