@@ -45,19 +45,30 @@ while 1:
                 var1 = row1['GS1']
                 var1 = str(int(var1[0: 12]) + 1)
                 var2 = ean13(var1)
-                No1 = row1['No']
-                No2 = str(int(No1)+1)
         except Exception as a:
-            print("step1:" + a)
+            print(a)
         finally:
             cursor1.close()
             connection1.close()
 
+        connection5 = pymysql.connect( ** config)
+        try:
+            with connection5.cursor() as cursor5:
+                sql5 = "SELECT MIN(No) From gs1 where Company='SH' AND GS1 is Null"
+                cursor5.execute(sql5)
+                row1 = cursor5.fetchone()
+                No2 = row1['MIN(No)']
+        except Exception as b:
+            print(b)
+        finally:
+            cursor5.close()
+            connection5.close()
+
         connection2 = pymysql.connect(**config)
         try:
             with connection2.cursor() as cursor2:
-                sql2 = "UPDATE gs1 SET GS1 = %s WHERE No = (SELECT MIN(No) From gs1 where Company='SH' AND GS1 is Null)" 
-                x = cursor2.execute(sql2,var2)
+                sql2 = "UPDATE gs1 SET GS1 = %s WHERE No = %s" 
+                x = cursor2.execute(sql2,(var2,No2))
                 if x == 0:
                     print("上海無新資料")
                     time.sleep(60)
@@ -67,8 +78,8 @@ while 1:
                     print("處理完畢！" + endtime)
                     time.sleep(60)
                     connection2.commit()
-        except Exception as b:
-            print("step2:" + b)
+        except Exception as c:
+            print(c)
         finally:
             cursor2.close()
             connection2.close()
@@ -82,19 +93,30 @@ while 1:
                 var1 = row1['GS1']
                 var1 = str(int(var1[0: 12]) + 1)
                 var2 = ean13(var1)
-                No1 = row1['No']
-                No2 = str(int(No1)+1)
-        except Exception as c:
-            print("step3:" + c)
+        except Exception as d:
+            print(d)
         finally:
             cursor3.close()
             connection3.close()
 
+        connection6 = pymysql.connect( ** config)
+        try:
+            with connection6.cursor() as cursor6:
+                sql6 = "SELECT MIN(No) From gs1 where Company='TP' AND GS1 is Null"
+                cursor6.execute(sql6)
+                row1 = cursor6.fetchone()
+                No2 = row1['MIN(No)']
+        except Exception as e:
+            print(e)
+        finally:
+            cursor6.close()
+            connection6.close()
+
         connection4 = pymysql.connect(**config)
         try:
             with connection4.cursor() as cursor4:
-                sql4 = "UPDATE gs1 SET GS1 = %s WHERE No = (SELECT MIN(No) From gs1 where Company='TP' AND GS1 is Null)" 
-                x = cursor4.execute(sql4,var2)
+                sql4 = "UPDATE gs1 SET GS1 = %s WHERE No = %s" 
+                x = cursor4.execute(sql4,(var2,No2))
                 if x == 0:
                     print("台北無新資料")
                     time.sleep(60)
@@ -104,8 +126,8 @@ while 1:
                     print("處理完畢！" + endtime)
                     time.sleep(60)
                     connection4.commit()
-        except Exception as d:
-            print("step4:" + d)
+        except Exception as f:
+            print(f)
         finally:
             cursor4.close()
             connection4.close()
